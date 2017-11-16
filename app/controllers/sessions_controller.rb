@@ -11,6 +11,5 @@ end
 
 post '/logout' do
 	session[:user_id] = nil
-	byebug
-	erb :"static/index"
+	redirect '/'
 end
