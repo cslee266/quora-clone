@@ -2,15 +2,16 @@
 <div class="stage">
 <div class="board">
 
-<h2>Login</h2>
+<h2 id="title" class="center">Quora</h2>
+<h4 id="tagline" class="center">A place to share knowledge and better understand the world</h4>
 
-<form method=post action=/sessions>
+<p id="login">Login</p>
+<form method=post action=/sessions class="form">
     <input type=text placeholder="Email" name="user[email]"><br>
     <input type=password placeholder="Password" name="user[password]"></br>
-    <input type=submit value="Login">
+    <input type=submit value="Login" id="loginbutton">
 	<p>Don't have an account?</p>
     <a href="/users/new">Sign up now!</a>
 </form>
-</div>
 </div>
 </div>
