@@ -1,0 +1,15 @@
+<p>These are your questions:</p>
+<table align="center" id="table" style="width:100%">
+	<% @questions = Question.all %>
+	<tr>
+		<th>Question</th>
+		<th>Answer</th>
+	</tr>
+
+<!-- 	<% @top_questions.each do |x| %>
+	<tr>
+		<td><a href="questions/"<%= x.id %>> <%= x.question %> </td>
+		<td><a href="answers/"><></td>
+	</tr>
+	<% end %> -->
+</table>

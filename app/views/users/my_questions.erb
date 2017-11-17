@@ -1,0 +1,24 @@
+<p>my questions</p>
+
+<% question = Question.all %>
+<% question.reverse.each do |x| %>
+<% q_user = User.find_by(id: x.user_id) %>
+
+<p><%= q_user.name %></p>
+<p><%= x.title %></p>
+<p><%= x.details %></p>
+<% x.answers.each do |y| %>
+<% a_user = User.find_by(id: y.user_id) %>
+<p><%= a_user.name %></p>
+<p><%= y.content %></p>
+<div id="new_answer"></div>
+<% end %>
+<form action="/answers" method="post" id="submit_answer">
+	<p>Post your answer here.</p>
+	<input type=hidden name=answer[user_id] value="<%= current_user.id %>">
+	<input type=hidden name=answer[question_id] value="<%= x.id %>">
+	<input type=text name="answer[content]">
+	<input type=submit value="Submit answer">
+</form>
+
+<% end %>

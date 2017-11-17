@@ -9,14 +9,18 @@ end
 
 post '/users' do
 	@user = User.new(params[:user])
-	if user.save
-		erb :"/users/profile"
+	if @user.save
+		erb :"users/profile"
 	else
 		render '/users/login'
 	end
 end
 
-get '/users/:id' do
-	@user = User.find_by(id: params[:id])
-	erb :"/users/profile"
+# get '/users/:id' do
+# 	@user = User.find_by(id: params[:id])
+# 	erb :"users/profile"
+# end
+
+get '/users/my_questions' do
+	erb :"users/my_questions"
 end

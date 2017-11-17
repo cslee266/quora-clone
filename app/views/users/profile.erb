@@ -3,3 +3,13 @@
 <form action="/logout" method="post">
 <input type=submit value="Logout">
 </form>
+
+<a href="/users/my_questions">My questions</a>
+
+<form action="/questions" method="post">
+<p>Post a question here.</p>
+<input type=hidden name="question[user_id]" value="<%= current_user.id %>">
+<input type=text placeholder="What's your question?" name="question[title]""><br>
+<input type=text placeholder="More details" name="question[details]"><br>
+<input type=submit value="Submit Question">
+</form>
