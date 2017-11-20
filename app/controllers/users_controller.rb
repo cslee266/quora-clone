@@ -10,6 +10,7 @@ end
 post '/users' do
 	@user = User.new(params[:user])
 	if @user.save
+		session[:user_id] = @user.id
 		erb :"users/profile"
 	else
 		render '/users/login'
