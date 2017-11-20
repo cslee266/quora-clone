@@ -1,0 +1,38 @@
+<p>my questions</p>
+
+<% question = Question.where(user_id: current_user.id) %>
+<% question.reverse.each do |question| %>
+<% q_user = User.find_by(id: question.user_id) %>
+
+<p><%= q_user.name %></p>
+<p><%= question.title %></p>
+<p><%= question.details %></p>
+<p class="q_vote"><%= QuestionVote.total_votes(question.id).to_json %></p>
+<form action="/question_votes" method="post">
+	<input type=hidden name=question_vote[user_id] value="<%= current_user.id %>">
+	<input type=hidden name=question_vote[question_id] value="<%= question.id %>">
+	<button type=submit name=question_vote[choice] value=1>Upvote</button> 
+	<button type=submit name=question_vote[choice] value=-1>Downvote</button>
+</form>
+<% question.answers.each do |answer| %>
+<% a_user = User.find_by(id: answer.user_id) %>
+<p><%= a_user.name %></p>
+<p><%= answer.content %></p>
+<p class="a_vote"><%= AnswerVote.total_votes(answer.id).to_json %></p>
+<form action="/answer_votes" method="post">
+	<input type=hidden name=answer_vote[user_id] value="<%= current_user.id %>">
+	<input type=hidden name=answer_vote[answer_id] value="<%= answer.id %>">
+	<button class="submit_upvote" type=submit name=answer_vote[choice] value=1>Upvote</button> 
+	<button class="submit_downvote" type=submit name=answer_vote[choice] value=-1>Downvote</button>
+</form>
+<div class="new_answer"></div>
+<% end %>
+<form action="/answers" method="post" class="submit_answer">
+	<p>Post your answer here.</p>
+	<input type=hidden name="answer[user_id]" value="<%= current_user.id %>">
+	<input type=hidden name="answer[question_id]"" value="<%= question.id %>">
+	<input type=text name="answer[content]">
+	<input type=submit value="Submit answer">
+</form>
+
+<% end %>
