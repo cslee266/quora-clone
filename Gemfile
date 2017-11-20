@@ -37,5 +37,3 @@ group :production do
 end
 
 gem 'bcrypt'
-
-gem 'byebug'
